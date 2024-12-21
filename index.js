@@ -9,7 +9,7 @@ async function getLord() {
     try {
         const lord = await fetch('https://openlibrary.org/search.json?title=the+lord+of+the+rings', {
             headers: {
-                'User-Agent': 'book-covers-by-you (mnazario35@gmail.com)',
+                'User-Agent': 'book-covers-by-you ()',
             }
         });
         const lordData = await lord.json();
