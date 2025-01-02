@@ -28,7 +28,7 @@ async function getSearch(title) {
 
         let iterate = 0;
         while (iterate <= 10) {
-            // console.log(filteredData[iterate]);
+            console.log(filteredData[iterate]);
             const optionDiv = document.createElement('div');
             optionDiv.classList.add('d-flex', 'justify-content-between');
 
@@ -37,7 +37,7 @@ async function getSearch(title) {
             const coverOption = document.createElement('button');
             coverOption.classList.add('list-group-item', 'list-group-item-action');
             coverOption.type = 'button';
-            coverOption.textContent = filteredData[iterate].title;
+            coverOption.textContent = `${filteredData[iterate].title} by ${filteredData[iterate].author_name[0]}`;
 
             optionDiv.appendChild(coverImg);
             optionDiv.appendChild(coverOption);
