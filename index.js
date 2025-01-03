@@ -2,7 +2,8 @@ import { fetchHeader } from "./headers.js";
 
 const body = document.querySelector('body');
 const form = document.getElementById('search-form');
-const input = document.getElementById('form-input');
+const titleInput = document.getElementById('form-input');
+const nameInput = document.getElementById('form-name');
 const listContainerDiv = document.createElement('div');
 listContainerDiv.classList.add('list-group');
 
@@ -10,11 +11,11 @@ listContainerDiv.classList.add('list-group');
 form.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    const search = input.value.replace(/\s/g, "+");
     body.appendChild(listContainerDiv);
     while(listContainerDiv.firstChild) {
         listContainerDiv.removeChild(listContainerDiv.lastChild);
     };
+    const search = titleInput.value.replace(/\s/g, "+");
     getSearch(search);
 });
 
@@ -31,6 +32,9 @@ async function getSearch(title) {
             console.log(filteredData[iterate]);
             const optionDiv = document.createElement('div');
             optionDiv.classList.add('d-flex', 'justify-content-between');
+            optionDiv.addEventListener('click', (event) => {
+                clickOptionDiv(event);
+            });
 
             const coverImg = getCoverImage(filteredData[iterate]);
 
@@ -68,6 +72,30 @@ function getCoverImage(option) {
         // coverImg.src = coverData.source_url;
 
         // body.appendChild(coverImg);
+    } catch (error) {
+        console.error({ error: error.message });
+    };
+};
+
+function clickOptionDiv(event) {
+    // console.log(event.target.textContent.split(' by ', 1).toString());
+    // console.log(nameInput.value)
+    try {
+        const postBook = fetch(`http://openlibrary.org/miguel_nazario740/anand/lists/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: {
+                'seeds': [
+                    '/books/OL43140390M',
+                ]
+            }
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data)
+        })
     } catch (error) {
         console.error({ error: error.message });
     };

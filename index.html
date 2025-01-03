@@ -10,9 +10,14 @@
 </head>
 <body>
     <h1>Book Covers By You</h1>
+    <h3>Look up a book and add a book cover to your favorites. Keep adding to create something special!</h3>
+
     <form class="row row-cols-lg-auto g-3 align-items-center" id="search-form">
         <div class="col-12">
-            <input id="form-input" type="text" name="search" class="form-control search-input" placeholder="Search by title..." required>
+            <input id="form-name" type="text" name="name" class="form-control" placeholder="Your name here..." autocomplete="on" required>
+        </div>
+        <div class="col-12">
+            <input id="form-input" type="text" name="search" class="form-control search-input" placeholder="Search by title..." autocomplete="on" required>
         </div>
         <div class="col-12">
             <button type="submit" class="btn btn-primary">Submit</button>
