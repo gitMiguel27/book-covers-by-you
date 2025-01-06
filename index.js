@@ -1,18 +1,17 @@
 import { fetchHeader } from "./headers.js";
 import { user } from "./user.js";
 
-const body = document.querySelector('body');
+const home = document.getElementById('home');
 const form = document.getElementById('search-form');
 const titleInput = document.getElementById('form-input');
 const nameInput = document.getElementById('form-name');
 const listContainerDiv = document.createElement('div');
 listContainerDiv.classList.add('list-group');
 
-
 form.addEventListener('submit', (event) => {
     event.preventDefault();
 
-    body.appendChild(listContainerDiv);
+    home.appendChild(listContainerDiv);
     while(listContainerDiv.firstChild) {
         listContainerDiv.removeChild(listContainerDiv.lastChild);
     };
@@ -82,7 +81,7 @@ function clickOptionDiv(event) {
     // console.log(event.target.textContent.split(' by ', 1).toString());
     // console.log(nameInput.value)
     try {
-        fetch(`http://openlibrary.org/people/${user}/anand/lists/`, {
+        fetch(`http://openlibrary.org/people/anand/lists/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

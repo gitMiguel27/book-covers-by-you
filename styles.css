@@ -1,0 +1,22 @@
+body {
+    background-color: rgb(204, 225, 208);
+}
+
+div#home {
+    height: 850px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+#search-form {
+    margin-top: 10px;
+    justify-content: center;
+}
+
+div.list-group {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+}
