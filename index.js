@@ -1,4 +1,5 @@
 import { fetchHeader } from "./headers.js";
+import { user } from "./user.js";
 
 const body = document.querySelector('body');
 const form = document.getElementById('search-form');
@@ -81,22 +82,39 @@ function clickOptionDiv(event) {
     // console.log(event.target.textContent.split(' by ', 1).toString());
     // console.log(nameInput.value)
     try {
-        const postBook = fetch(`http://openlibrary.org/miguel_nazario740/anand/lists/`, {
+        fetch(`http://openlibrary.org/people/${user}/anand/lists/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: {
-                'seeds': [
-                    '/books/OL43140390M',
+                "name": "Book Covers",
+                "description": "Collection of my favorite book covers to create a wallpaper",
+                "tags": ["Book Cover", "Fun", "Project"],
+                "seeds": [
+                    "/books/OL24331810M",
                 ]
             }
         })
         .then(resp => resp.json())
         .then(data => {
-            console.log(data)
-        })
+            console.log(data);
+        });
+        getUserFavorites();
     } catch (error) {
         console.error({ error: error.message });
     };
 };
+
+async function getUserFavorites() {
+    try {
+        const userList = await fetch(`http://openlibrary.org/people/${user}/lists.json`, {
+            headers: fetchHeader
+        });
+        const userListData = await userList.json();
+        console.log(userListData);
+    } catch (error) {
+        console.error({ error: error.message });
+    };
+};
+getUserFavorites();
